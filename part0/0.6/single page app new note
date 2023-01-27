@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant browser
+    participant server
+    
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    server-->>browser: the html file   
+    activate server
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+    
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: the spa JavaScript file
+    deactivate server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+    activate server
+    Note right of browser: The server responds with status code 201 created, and the following in JSON format.
+    server-->>browser: [{content: "TEST", date: "2023-01-27T21:27:16.861Z"}]
+    deactivate server    
+
+   
