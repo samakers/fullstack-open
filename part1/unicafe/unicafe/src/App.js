@@ -1,4 +1,3 @@
-/* eslint-disable no-lone-blocks */
 import { useState } from "react";
 
 const Button = ({ handleClick, text }) => {
@@ -67,15 +66,18 @@ const App = () => {
   //adding value of total collected feedback (good: 1, neutral: 0, bad: -1)
   const addArray = avg.reduce((total, currentValue) => total + currentValue, 0);
   //getting final average
-  const getAvg = addArray / avg.length || 0;
+  // const getAvg = addArray / avg.length || 0;
+  const getAvg = () => addArray / avg.length || 0;
+
 
   const handleGoodClick = () => {
     setAvg(avg.concat(1));
-    setAvgFinal(avgFinal + getAvg);
+    setAvgFinal(getAvg());
     setPositive(positive.concat(1));
     setGood(good + 1);
     setTotal(total + 1);
-    setTotalPercentage((100 * addPositive) / total || 0);
+    setTotalPercentage((100 * (addPositive + 1)) / (total + 1) || 0);
+
   };
 
   const handleNeutralClick = () => {
