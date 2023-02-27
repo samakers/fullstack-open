@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import personsService from "./services/people";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -26,9 +27,18 @@ const App = () => {
     if (persons.some((person) => person.name === newName)) {
       alert(`${newName} is already added to the phonebook!`);
     } else {
-      setPersons(persons.concat(nameObject));
-      setNewName("");
-      setNewNumber("");
+      personsService.create(nameObject).then((retrurnedPerson) => {
+        setPersons(persons.concat(retrurnedPerson));
+        setNewName("");
+      });
+    }
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to remove this person?")) {
+      personsService.remove(id).then(() => {
+        setPersons(persons.filter((person) => person.id !== id));
+      });
     }
   };
 
@@ -59,7 +69,6 @@ const App = () => {
         <div>
           number: <input value={newNumber} onChange={handleNumberChange} />
         </div>
-        {/* <div>debug: {newName}</div> */}
         <div>
           <button type="submit" onClick={() => setNewName(newName)}>
             add
@@ -73,9 +82,12 @@ const App = () => {
             person.name.toLowerCase().includes(filter.toLowerCase())
           )
           .map((person) => (
-            <li key={person.name}>
-              {person.name} {person.number}
-            </li>
+            <div>
+              <li key={person.name}>
+                {person.name} {person.number}{" "}
+                <button onClick={() => handleDelete(person.id)}>delete</button>
+              </li>
+            </div>
           ))}
       </ul>
     </div>
