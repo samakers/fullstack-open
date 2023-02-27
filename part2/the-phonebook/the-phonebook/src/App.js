@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Notification from "./components/Notification";
 import personsService from "./services/people";
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:3001/persons").then((response) => {
@@ -30,7 +32,6 @@ const App = () => {
           `${newName} is already added to phonebook, replace the old number with a new one?`
         )
       ) {
-        //ADD PUT LOGIC HERE
         personsService
           .update(existingPerson.id, nameObject)
           .then((returnedPerson) => {
@@ -40,12 +41,20 @@ const App = () => {
               )
             );
             setNewName("");
+            setErrorMessage(`${returnedPerson.name} number has been changed.`);
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 3000);
           });
       }
     } else {
       personsService.create(nameObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
+        setErrorMessage(`${returnedPerson.name} has been added.`);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 3000);
       });
     }
   };
@@ -73,6 +82,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage} />
       filter shown with <input value={filter} onChange={handleFilterChange} />
       <h2>Add a new</h2>
       <form onSubmit={addName}>

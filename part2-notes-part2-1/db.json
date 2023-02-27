@@ -3,12 +3,12 @@
     {
       "id": 1,
       "content": "HTML is easy",
-      "important": false
+      "important": true
     },
     {
       "id": 2,
       "content": "Browser can execute only JavaScript",
-      "important": false
+      "important": true
     },
     {
       "id": 3,
@@ -17,28 +17,33 @@
     },
     {
       "content": "r",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "test",
-      "important": false,
+      "important": true,
       "id": 5
     },
     {
       "content": "hi",
-      "important": false,
+      "important": true,
       "id": 6
     },
     {
       "content": "jjj",
-      "important": false,
+      "important": true,
       "id": 7
     },
     {
       "content": "",
-      "important": false,
+      "important": true,
       "id": 8
+    },
+    {
+      "content": "",
+      "important": true,
+      "id": 9
     }
   ]
 }
