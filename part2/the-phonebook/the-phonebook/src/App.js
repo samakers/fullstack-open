@@ -4,8 +4,6 @@ import personsService from "./services/people";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
-
-  // The newName state is meant for controlling the form input element.
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
@@ -23,12 +21,30 @@ const App = () => {
       number: newNumber,
     };
 
+    const existingPerson = persons.find((person) => person.name === newName);
+
     // Check if the persons array already contains an object with the same name
-    if (persons.some((person) => person.name === newName)) {
-      alert(`${newName} is already added to the phonebook!`);
+    if (existingPerson) {
+      if (
+        window.confirm(
+          `${newName} is already added to phonebook, replace the old number with a new one?`
+        )
+      ) {
+        //ADD PUT LOGIC HERE
+        personsService
+          .update(existingPerson.id, nameObject)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== existingPerson.id ? person : returnedPerson
+              )
+            );
+            setNewName("");
+          });
+      }
     } else {
-      personsService.create(nameObject).then((retrurnedPerson) => {
-        setPersons(persons.concat(retrurnedPerson));
+      personsService.create(nameObject).then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
         setNewName("");
       });
     }
