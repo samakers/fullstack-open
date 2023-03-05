@@ -1,29 +1,9 @@
 {
   "persons": [
     {
-      "name": "John Smith",
-      "number": "9999999",
-      "id": 2
-    },
-    {
-      "name": "Brian",
-      "number": "1234",
-      "id": 3
-    },
-    {
-      "name": "Tod Bro",
-      "number": "1234",
-      "id": 4
-    },
-    {
-      "name": "ffff",
-      "number": "",
-      "id": 5
-    },
-    {
-      "name": "test",
-      "number": "1234567",
-      "id": 6
+      "name": "ss",
+      "number": "111",
+      "id": 1
     }
   ]
 }

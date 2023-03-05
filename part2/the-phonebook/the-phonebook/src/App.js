@@ -9,6 +9,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [notificationStyle, setNotificationStyle] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:3001/persons").then((response) => {
@@ -41,6 +42,7 @@ const App = () => {
               )
             );
             setNewName("");
+            setNewNumber("");
             setErrorMessage(`${returnedPerson.name} number has been changed.`);
             setTimeout(() => {
               setErrorMessage(null);
@@ -51,6 +53,8 @@ const App = () => {
       personsService.create(nameObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
+        setNewNumber("");
+        setNotificationStyle('green');
         setErrorMessage(`${returnedPerson.name} has been added.`);
         setTimeout(() => {
           setErrorMessage(null);
@@ -60,13 +64,29 @@ const App = () => {
   };
 
   const handleDelete = (id) => {
+    const personToDelete = persons.find((person) => person.id === id);
     if (window.confirm("Are you sure you want to remove this person?")) {
-      personsService.remove(id).then(() => {
-        setPersons(persons.filter((person) => person.id !== id));
-      });
+      console.log('Deleting person with id:', id);
+      personsService.remove(id)
+        .then(() => {
+          setPersons(persons.filter((person) => person.id !== id));
+          setNotificationStyle('green');
+          setErrorMessage(`${personToDelete.name} has now been removed from the server`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log(error)
+          setNotificationStyle('red');
+          setErrorMessage(`${personToDelete.name} has already been removed from the server`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 3000);
+        });
     }
   };
-
+  
   const handleNameChange = (event) => {
     setNewName(event.target.value);
   };
@@ -82,7 +102,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={errorMessage} />
+      <Notification message={errorMessage} notificationStyle={notificationStyle}/>
       filter shown with <input value={filter} onChange={handleFilterChange} />
       <h2>Add a new</h2>
       <form onSubmit={addName}>
