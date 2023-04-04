@@ -1,6 +1,4 @@
-# fullstack-open
-
-# FULLSTACK OPEN - 2022
+# FULLSTACK OPEN - 2023
 
 - [x] Part 0
   - [x] 0.1: HTML
