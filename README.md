@@ -40,37 +40,37 @@
   - [x] 2.15: the phonebook, step7
   - [x] 2.16: the phonebook, step8
   - [x] 2.17: the phonebook, step9
-  - [] 2.18: the phonebook, step10
-  - [] 2.19: the phonebook, step11
-  - [] 2.20: the phonebook, step12
-- [] Part 3
-  - [] 3.1: phonebook backend, step1
-  - [] 3.2: phonebook backend, step2
-  - [] 3.3: phonebook backend, step3
-  - [] 3.4: phonebook backend, step4
-  - [] 3.5: phonebook backend, step5
-  - [] 3.6: phonebook backend, step6
-  - [] 3.7: phonebook backend, step7
-  - [] 3.8: phonebook backend, step8
-  - [] 3.9: phonebook backend, step9
-  - [] 3.10: phonebook backend, step10
-  - [] 3.11: phonebook backend, step11
-  - [] 3.12: command-line database
-  - [] 3.13: phonebook database, step1
-  - [] 3.14: phonebook database, step2
-  - [] 3.14: phonebook database, step2
-  - [] 3.16: phonebook database, step4
-  - [] 3.17: phonebook database, step5
-  - [] 3.18: phonebook database, step6
-  - [] 3.19: phonebook database, step7
-  - [] 3.20: phonebook database, step8
-  - [] 3.21: deploying the database backend to production
-  - [] 3.22: lint configuration
+  - [ ] 2.18: the phonebook, step10
+  - [ ] 2.19: the phonebook, step11
+  - [ ] 2.20: the phonebook, step12
+- [ ] Part 3
+  - [ ] 3.1: phonebook backend, step1
+  - [ ] 3.2: phonebook backend, step2
+  - [ ] 3.3: phonebook backend, step3
+  - [ ] 3.4: phonebook backend, step4
+  - [ ] 3.5: phonebook backend, step5
+  - [ ] 3.6: phonebook backend, step6
+  - [ ] 3.7: phonebook backend, step7
+  - [ ] 3.8: phonebook backend, step8
+  - [ ] 3.9: phonebook backend, step9
+  - [ ] 3.10: phonebook backend, step10
+  - [ ] 3.11: phonebook backend, step11
+  - [ ] 3.12: command-line database
+  - [ ] 3.13: phonebook database, step1
+  - [ ] 3.14: phonebook database, step2
+  - [ ] 3.14: phonebook database, step2
+  - [ ] 3.16: phonebook database, step4
+  - [ ] 3.17: phonebook database, step5
+  - [ ] 3.18: phonebook database, step6
+  - [ ] 3.19: phonebook database, step7
+  - [ ] 3.20: phonebook database, step8
+  - [ ] 3.21: deploying the database backend to production
+  - [ ] 3.22: lint configuration
 - [ ] Part 4
-  - [] 4.1: blog list, step1
-  - [] 4.2: blog list, step2
-  - [] 4.3: helper functions and unit tests, step1
-  - [] 4.4: helper functions and unit tests, step2
-  - [] 4.5: helper functions and unit tests, step3
-  - [] 4.6: helper functions and unit tests, step4
-  - [] 4.7: helper functions and unit tests, step5
+  - [ ] 4.1: blog list, step1
+  - [ ] 4.2: blog list, step2
+  - [ ] 4.3: helper functions and unit tests, step1
+  - [ ] 4.4: helper functions and unit tests, step2
+  - [ ] 4.5: helper functions and unit tests, step3
+  - [ ] 4.6: helper functions and unit tests, step4
+  - [ ] 4.7: helper functions and unit tests, step5
