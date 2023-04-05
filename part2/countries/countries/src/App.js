@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Filter from "./components/Filter";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -13,15 +14,30 @@ function App() {
     });
   }, []);
 
+  const filteredCountries = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <div>
-      <label>find countries</label>
-      <input></input>
-      <ul>
-        {countries.map((country, index) => (
-          <li key={index}>{country.name.common}</li>
-        ))}
-      </ul>
+      <Filter value={filter} onChange={handleFilterChange} />
+      {filter && (
+        <div>
+          {filteredCountries.length > 10 ? (
+            <p>Too many matches, specify another filter</p>
+          ) : (
+            <ul>
+              {filteredCountries.map((country, index) => (
+                <li key={index}>{country.name.common}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
 }
