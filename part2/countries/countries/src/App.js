@@ -5,6 +5,7 @@ import Filter from "./components/Filter";
 function App() {
   const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   const COUNTRIES_URL = "https://restcountries.com/v3.1/all";
 
@@ -22,34 +23,40 @@ function App() {
     setFilter(event.target.value);
   };
 
+  const handleShowButtonClick = (event, index) => {
+    setSelectedCountry(filteredCountries[index]);
+  };
+
   return (
     <div>
       <Filter value={filter} onChange={handleFilterChange} />
       {filter.length > 0 ? (
         <div>
-          {filteredCountries.length === 1 ? (
+          {selectedCountry ? (
             <div>
-              <h2>{filteredCountries[0].name.common}</h2>
-              <p>Capital: {filteredCountries[0].capital}</p>
-              <p>Population: {filteredCountries[0].population}</p>
+              <h2>{selectedCountry.name.common}</h2>
+              <p>Capital: {selectedCountry.capital}</p>
+              <p>Population: {selectedCountry.population}</p>
               <h3>Languages:</h3>
               <ul>
-                {Object.values(filteredCountries[0].languages).map((language, index) => (
+                {Object.values(selectedCountry.languages).map((language, index) => (
                   <li key={index}>{language}</li>
                 ))}
               </ul>
-              <img src={filteredCountries[0].flags.png} alt={`${filteredCountries[0].name.common} flag`} width="200" />
+              <img src={selectedCountry.flags.png} alt={`${selectedCountry.name.common} flag`} width="200" />
+              <button onClick={() => setSelectedCountry(null)}>back</button>
             </div>
+          ) : filteredCountries.length > 10 ? (
+            <p>Too many matches, specify another filter</p>
           ) : (
-            filteredCountries.length > 10 ? (
-              <p>Too many matches, specify another filter</p>
-            ) : (
-              <ul>
-                {filteredCountries.map((country, index) => (
-                  <li key={index}>{country.name.common}</li>
-                ))}
-              </ul>
-            )
+            <ul>
+              {filteredCountries.map((country, index) => (
+                <div key={index} style={{ display: "flex" }}>
+                  <li>{country.name.common}</li>
+                  <button onClick={(event) => handleShowButtonClick(event, index)}>show</button>
+                </div>
+              ))}
+            </ul>
           )}
         </div>
       ) : (
@@ -57,8 +64,7 @@ function App() {
       )}
     </div>
   );
-  
-  
 }
+
 
 export default App;
