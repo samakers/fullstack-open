@@ -39,11 +39,17 @@ function App() {
               <p>Population: {selectedCountry.population}</p>
               <h3>Languages:</h3>
               <ul>
-                {Object.values(selectedCountry.languages).map((language, index) => (
-                  <li key={index}>{language}</li>
-                ))}
+                {Object.values(selectedCountry.languages).map(
+                  (language, index) => (
+                    <li key={index}>{language}</li>
+                  )
+                )}
               </ul>
-              <img src={selectedCountry.flags.png} alt={`${selectedCountry.name.common} flag`} width="200" />
+              <img
+                src={selectedCountry.flags.png}
+                alt={`${selectedCountry.name.common} flag`}
+                width="200"
+              />
               <button onClick={() => setSelectedCountry(null)}>back</button>
             </div>
           ) : filteredCountries.length > 10 ? (
@@ -53,7 +59,11 @@ function App() {
               {filteredCountries.map((country, index) => (
                 <div key={index} style={{ display: "flex" }}>
                   <li>{country.name.common}</li>
-                  <button onClick={(event) => handleShowButtonClick(event, index)}>show</button>
+                  <button
+                    onClick={(event) => handleShowButtonClick(event, index)}
+                  >
+                    show
+                  </button>
                 </div>
               ))}
             </ul>
@@ -65,6 +75,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
