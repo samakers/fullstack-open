@@ -40,17 +40,17 @@
   - [x] 2.15: the phonebook, step7
   - [x] 2.16: the phonebook, step8
   - [x] 2.17: the phonebook, step9
-  - [ ] 2.18: the phonebook, step10
-  - [ ] 2.19: the phonebook, step11
-  - [ ] 2.20: the phonebook, step12
+  - [x] 2.18: the phonebook, step10
+  - [x] 2.19: the phonebook, step11
+  - [x] 2.20: the phonebook, step12
 - [ ] Part 3
-  - [ ] 3.1: phonebook backend, step1
-  - [ ] 3.2: phonebook backend, step2
-  - [ ] 3.3: phonebook backend, step3
-  - [ ] 3.4: phonebook backend, step4
-  - [ ] 3.5: phonebook backend, step5
-  - [ ] 3.6: phonebook backend, step6
-  - [ ] 3.7: phonebook backend, step7
+  - [x] 3.1: phonebook backend, step1
+  - [x] 3.2: phonebook backend, step2
+  - [x] 3.3: phonebook backend, step3
+  - [x] 3.4: phonebook backend, step4
+  - [x] 3.5: phonebook backend, step5
+  - [x] 3.6: phonebook backend, step6
+  - [x] 3.7: phonebook backend, step7
   - [ ] 3.8: phonebook backend, step8
   - [ ] 3.9: phonebook backend, step9
   - [ ] 3.10: phonebook backend, step10
