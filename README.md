@@ -51,14 +51,14 @@
   - [x] 3.5: phonebook backend, step5
   - [x] 3.6: phonebook backend, step6
   - [x] 3.7: phonebook backend, step7
-  - [ ] 3.8: phonebook backend, step8
-  - [ ] 3.9: phonebook backend, step9
-  - [ ] 3.10: phonebook backend, step10
-  - [ ] 3.11: phonebook backend, step11
-  - [ ] 3.12: command-line database
-  - [ ] 3.13: phonebook database, step1
-  - [ ] 3.14: phonebook database, step2
-  - [ ] 3.14: phonebook database, step2
+  - [x] 3.8: phonebook backend, step8
+  - [x] 3.9: phonebook backend, step9
+  - [x] 3.10: phonebook backend, step10
+  - [x] 3.11: phonebook backend, step11
+  - [x] 3.12: command-line database
+  - [x] 3.13: phonebook database, step1
+  - [x] 3.14: phonebook database, step2
+  - [x] 3.14: phonebook database, step2
   - [ ] 3.16: phonebook database, step4
   - [ ] 3.17: phonebook database, step5
   - [ ] 3.18: phonebook database, step6
