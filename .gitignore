@@ -3,6 +3,4 @@ part3/part2-notes-part3-1
 part3/part3-notes-backend-part3-3
 node_modules
 .DS_Store
-part2-notes-part2-1/package-lock.json
-part2-notes-part2-1/package.json
-part2-notes-part2-1/src/services/notes.js
+
