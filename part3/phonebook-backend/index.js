@@ -70,6 +70,21 @@ app.post("/api/persons", (request, response) => {
   });
 });
 
+app.put('/api/persons/:id', (request, response, next) => {
+  const body = request.body
+
+  const person = {
+    person: request.body.person,
+    phoneNumber: request.body.phoneNumber || false,
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+    .then(updatedPerson => {
+      response.json(updatedPerson)
+    })
+    .catch(error => next(error))
+})
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
