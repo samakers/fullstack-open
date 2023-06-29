@@ -1,36 +1,43 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-const port = 3001;
+const PORT = process.env.PORT;
+const cors = require("cors");
+const Person = require("./models/person");
 
+app.use(cors());
 app.use(express.json());
-app.use(morgan('tiny'));
+app.use(morgan("tiny"));
+app.use(express.static("build"));
 
-const persons = [
-  {
-    id: 1,
-    name: "Arto Hellas",
-    number: "040-123456",
-  },
-  {
-    id: 2,
-    name: "Ada Lovelace",
-    number: "39-44-5323523",
-  },
-  {
-    id: 3,
-    name: "Dan Abramov",
-    number: "12-43-234345",
-  },
-  {
-    id: 4,
-    name: "Mary Poppendieck",
-    number: "39-23-6423122",
-  },
-];
+// const persons = [
+//   {
+//     id: 1,
+//     name: "Arto Hellas",
+//     number: "040-123456",
+//   },
+//   {
+//     id: 2,
+//     name: "Ada Lovelace",
+//     number: "39-44-5323523",
+//   },
+//   {
+//     id: 3,
+//     name: "Dan Abramov",
+//     number: "12-43-234345",
+//   },
+//   {
+//     id: 4,
+//     name: "Mary Poppendieck",
+//     number: "39-23-6423122",
+//   },
+// ];
 
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  Person.find({}).then((persons) => {
+    response.json(persons);
+  });
 });
 
 app.get("/api/persons/:id", (request, response) => {
@@ -63,28 +70,37 @@ app.delete("/api/persons/:id", (request, response) => {
 
 app.post("/api/persons", (request, response) => {
   if (request.body.name === "" || request.body.number === "") {
-    response.status(400).end();
-    return;
+    return response.status(400).end();
   }
 
-  for (let i = 0; i < persons.length; i++) {
-    if (persons[i].name === request.body.name) {
-      response.status(409).end();
-      return;
-    }
-  }
+  // const existingPerson = persons.find(
+  //   (person) => person.name === request.body.name
+  // );
+  // if (existingPerson) {
+  //   return response.status(409).end();
+  // }
 
-  const { name, number } = request.body;
-  const newPerson = {
-    id: Math.floor(Math.random() * 1000000),
-    name: name,
-    number: number,
-  };
-  persons.push(newPerson);
-  response.send("Person added successfully");
-  return;
+  //   const { name, number } = request.body;
+
+  //   const newPerson = {
+  //     id: Math.floor(Math.random() * 1000000),
+  //     name: name,
+  //     number: number,
+  //   };
+  //   persons.push(newPerson);
+  //   response.json(newPerson);
+  // });
+
+  const person = new Person({
+    person: request.body.person,
+    phoneNumber: request.body.phoneNumber || false,
+  });
+
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });

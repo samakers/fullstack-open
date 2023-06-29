@@ -12,7 +12,7 @@ const App = () => {
   const [notificationStyle, setNotificationStyle] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3001/persons").then((response) => {
+    axios.get("/api/persons").then((response) => {
       setPersons(response.data);
     });
   }, []);
@@ -54,7 +54,7 @@ const App = () => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
         setNewNumber("");
-        setNotificationStyle('green');
+        setNotificationStyle("green");
         setErrorMessage(`${returnedPerson.name} has been added.`);
         setTimeout(() => {
           setErrorMessage(null);
@@ -66,27 +66,32 @@ const App = () => {
   const handleDelete = (id) => {
     const personToDelete = persons.find((person) => person.id === id);
     if (window.confirm("Are you sure you want to remove this person?")) {
-      console.log('Deleting person with id:', id);
-      personsService.remove(id)
+      console.log("Deleting person with id:", id);
+      personsService
+        .remove(id)
         .then(() => {
           setPersons(persons.filter((person) => person.id !== id));
-          setNotificationStyle('green');
-          setErrorMessage(`${personToDelete.name} has now been removed from the server`);
+          setNotificationStyle("green");
+          setErrorMessage(
+            `${personToDelete.name} has now been removed from the server`
+          );
           setTimeout(() => {
             setErrorMessage(null);
           }, 3000);
         })
         .catch((error) => {
-          console.log(error)
-          setNotificationStyle('red');
-          setErrorMessage(`${personToDelete.name} has already been removed from the server`);
+          console.log(error);
+          setNotificationStyle("red");
+          setErrorMessage(
+            `${personToDelete.name} has already been removed from the server`
+          );
           setTimeout(() => {
             setErrorMessage(null);
           }, 3000);
         });
     }
   };
-  
+
   const handleNameChange = (event) => {
     setNewName(event.target.value);
   };
@@ -102,7 +107,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={errorMessage} notificationStyle={notificationStyle}/>
+      <Notification
+        message={errorMessage}
+        notificationStyle={notificationStyle}
+      />
       filter shown with <input value={filter} onChange={handleFilterChange} />
       <h2>Add a new</h2>
       <form onSubmit={addName}>
@@ -121,12 +129,14 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {persons
-          .filter((person) =>
-            person.name.toLowerCase().includes(filter.toLowerCase())
+          .filter(
+            (person) =>
+              person.name &&
+              person.name.toLowerCase().includes(filter.toLowerCase())
           )
           .map((person) => (
-            <div>
-              <li key={person.name}>
+            <div key={person.name}>
+              <li>
                 {person.name} {person.number}{" "}
                 <button onClick={() => handleDelete(person.id)}>delete</button>
               </li>
