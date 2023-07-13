@@ -59,10 +59,10 @@
   - [x] 3.13: phonebook database, step1
   - [x] 3.14: phonebook database, step2
   - [x] 3.14: phonebook database, step2
-  - [ ] 3.16: phonebook database, step4
-  - [ ] 3.17: phonebook database, step5
-  - [ ] 3.18: phonebook database, step6
-  - [ ] 3.19: phonebook database, step7
+  - [x] 3.16: phonebook database, step4
+  - [x] 3.17: phonebook database, step5
+  - [x] 3.18: phonebook database, step6
+  - [x] 3.19: phonebook database, step7
   - [ ] 3.20: phonebook database, step8
   - [ ] 3.21: deploying the database backend to production
   - [ ] 3.22: lint configuration
