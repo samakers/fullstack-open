@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.set('strictQuery',false)
 
-// const url = `mongodb+srv://samakers1:${password}@cluster0.k5gbmwj.mongodb.net/phonebookApp?retryWrites=true&w=majority`;
+
 const url = process.env.MONGODB_URI
 
 
@@ -14,10 +14,14 @@ mongoose.connect(url)
     console.log('error connecting to MongoDB:', error.message)
   })
 
-const personSchema = new mongoose.Schema({
-  person: String,
-  phoneNumber: String,
-});
+  const personSchema = new mongoose.Schema({
+    person: {
+      type: String,
+      minLength: 3,
+      required: true
+    },
+    phoneNumber: String
+  });
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {

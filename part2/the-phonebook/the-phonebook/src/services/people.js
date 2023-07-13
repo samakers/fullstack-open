@@ -12,6 +12,7 @@ const create = (newObject) => {
     .then((response) => response.data)
     .catch((error) => {
       console.log("create failed");
+      throw error
     });
 };
 
@@ -21,6 +22,7 @@ const update = (id, newObject) => {
     .then((response) => response.data)
     .catch((error) => {
       console.log("update failed");
+      throw error
     });
 };
 

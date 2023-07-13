@@ -24,7 +24,7 @@ const App = () => {
       number: newNumber,
     };
 
-    const existingPerson = persons.find((person) => person.name === newName);
+    const existingPerson = persons.find((person) => person.person === newName);
 
     // Check if the persons array already contains an object with the same name
     if (existingPerson) {
@@ -43,23 +43,52 @@ const App = () => {
             );
             setNewName("");
             setNewNumber("");
-            setErrorMessage(`${returnedPerson.name} number has been changed.`);
+            setErrorMessage(
+              `${returnedPerson.person} number has been changed.`
+            );
             setTimeout(() => {
               setErrorMessage(null);
             }, 3000);
           });
       }
     } else {
-      personsService.create(nameObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-        setNotificationStyle("green");
-        setErrorMessage(`${returnedPerson.name} has been added.`);
-        setTimeout(() => {
-          setErrorMessage(null);
-        }, 3000);
-      });
+      personsService
+        .create(nameObject)
+        .then((returnedPerson) => {
+          if (returnedPerson && returnedPerson.person) {
+            setPersons(persons.concat(returnedPerson));
+            setNewName("");
+            setNewNumber("");
+            setNotificationStyle("green");
+            setErrorMessage(`${returnedPerson.person} has been added.`);
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 3000);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          console.error("Error Response:", error.response);
+          console.error("Error Response Data:", error.response?.data);
+
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.error
+          ) {
+            setErrorMessage(error.response.data.error);
+          } else {
+            setErrorMessage("Failed to add a new person.");
+          }
+          setNotificationStyle("red");
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 3000);
+        })
+        .catch((error) => {
+          // Generic catch block
+          console.error("Generic Error:", error);
+        });
     }
   };
 
@@ -73,7 +102,7 @@ const App = () => {
           setPersons(persons.filter((person) => person.id !== id));
           setNotificationStyle("green");
           setErrorMessage(
-            `${personToDelete.name} has now been removed from the server`
+            `${personToDelete.person} has now been removed from the server`
           );
           setTimeout(() => {
             setErrorMessage(null);
@@ -83,7 +112,7 @@ const App = () => {
           console.log(error);
           setNotificationStyle("red");
           setErrorMessage(
-            `${personToDelete.name} has already been removed from the server`
+            `${personToDelete.person} has already been removed from the server`
           );
           setTimeout(() => {
             setErrorMessage(null);
@@ -131,13 +160,13 @@ const App = () => {
         {persons
           .filter(
             (person) =>
-              person.name &&
-              person.name.toLowerCase().includes(filter.toLowerCase())
+              person.person &&
+              person.person.toLowerCase().includes(filter.toLowerCase())
           )
           .map((person) => (
-            <div key={person.name}>
+            <div key={person.id}>
               <li>
-                {person.name} {person.number}{" "}
+                {person.person} {person.phoneNumber}{" "}
                 <button onClick={() => handleDelete(person.id)}>delete</button>
               </li>
             </div>

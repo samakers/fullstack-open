@@ -9,11 +9,6 @@ const url = `mongodb+srv://samakers1:${password}@cluster0.k5gbmwj.mongodb.net/ph
 mongoose.set("strictQuery", false);
 mongoose.connect(url);
 
-const personSchema = new mongoose.Schema({
-  person: String,
-  phoneNumber: String,
-});
-
 const Person = mongoose.model("Person", personSchema);
 
 if (process.argv.length < 4) {
