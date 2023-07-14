@@ -15,6 +15,7 @@ mongoose.set('strictQuery', false)
 mongoose.connect(url)
 
 // Define the Person model using the personSchema
+// eslint-disable-next-line no-undef
 const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length < 4) {
@@ -33,7 +34,7 @@ if (process.argv.length < 4) {
     phoneNumber: `${number}`,
   })
 
-  person.save().then((result) => {
+  person.save().then(() => {
     console.log(`added ${name} number ${number} to phonebook`)
     mongoose.connection.close()
   })
