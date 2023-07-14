@@ -12,6 +12,7 @@ const App = () => {
   const [notificationStyle, setNotificationStyle] = useState("");
 
   useEffect(() => {
+    // Fetch all persons data from the server on component mount
     axios.get("/api/persons").then((response) => {
       setPersons(response.data);
     });
@@ -33,6 +34,7 @@ const App = () => {
           `${newName} is already added to phonebook, replace the old number with a new one?`
         )
       ) {
+        // Update the existing person's number
         personsService
           .update(existingPerson.id, nameObject)
           .then((returnedPerson) => {
@@ -52,6 +54,7 @@ const App = () => {
           });
       }
     } else {
+      // Create a new person
       personsService
         .create(nameObject)
         .then((returnedPerson) => {
@@ -76,7 +79,11 @@ const App = () => {
             error.response.data &&
             error.response.data.error
           ) {
-            setErrorMessage(error.response.data.error);
+            if (error.response.data.error.includes("phone number")) {
+              setErrorMessage("Invalid phone number format."); // Display a specific error message for phone number validation failure
+            } else {
+              setErrorMessage(error.response.data.error);
+            }
           } else {
             setErrorMessage("Failed to add a new person.");
           }
@@ -96,6 +103,7 @@ const App = () => {
     const personToDelete = persons.find((person) => person.id === id);
     if (window.confirm("Are you sure you want to remove this person?")) {
       console.log("Deleting person with id:", id);
+      // Delete the person from the server
       personsService
         .remove(id)
         .then(() => {
@@ -157,6 +165,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
+        {/* Filter and map the persons array */}
         {persons
           .filter(
             (person) =>
@@ -175,4 +184,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;
