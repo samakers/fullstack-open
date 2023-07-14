@@ -43,7 +43,7 @@
   - [x] 2.18: the phonebook, step10
   - [x] 2.19: the phonebook, step11
   - [x] 2.20: the phonebook, step12
-- [ ] Part 3
+- [x] Part 3
   - [x] 3.1: phonebook backend, step1
   - [x] 3.2: phonebook backend, step2
   - [x] 3.3: phonebook backend, step3
@@ -63,9 +63,9 @@
   - [x] 3.17: phonebook database, step5
   - [x] 3.18: phonebook database, step6
   - [x] 3.19: phonebook database, step7
-  - [ ] 3.20: phonebook database, step8
-  - [ ] 3.21: deploying the database backend to production
-  - [ ] 3.22: lint configuration
+  - [x] 3.20: phonebook database, step8
+  - [x] 3.21: deploying the database backend to production
+  - [x] 3.22: lint configuration
 - [ ] Part 4
   - [ ] 4.1: blog list, step1
   - [ ] 4.2: blog list, step2
